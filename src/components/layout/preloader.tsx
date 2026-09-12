@@ -116,10 +116,17 @@ export function Preloader() {
       finished.current = true;
       setProgress(100);
       window.setTimeout(() => {
+        if (!window.location.hash) {
+          window.scrollTo(0, 0);
+        }
         setVisible(false);
         markReady();
       }, 260);
     };
+
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
 
     // Repeat visits within the same session skip straight through.
     let repeatVisit = false;

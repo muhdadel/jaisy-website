@@ -346,18 +346,24 @@ function MobileCapabilityMap({
 
   const railRef = useRef<HTMLDivElement>(null);
   const touch = useRef<{ x: number; y: number } | null>(null);
+  const skipRailAlign = useRef(true);
 
   const go = (dir: 1 | -1) => {
     onSelect(slugs[(index + dir + slugs.length) % slugs.length]);
   };
 
+  // Keep the selected name centered in the rail only — never scroll the page.
   useEffect(() => {
-    const node = railRef.current?.querySelector<HTMLElement>(
-      `[data-slug="${active}"]`,
-    );
-    node?.scrollIntoView({
-      inline: "center",
-      block: "nearest",
+    const rail = railRef.current;
+    const node = rail?.querySelector<HTMLElement>(`[data-slug="${active}"]`);
+    if (!rail || !node) return;
+    if (skipRailAlign.current) {
+      skipRailAlign.current = false;
+      return;
+    }
+    const left = node.offsetLeft - (rail.clientWidth - node.clientWidth) / 2;
+    rail.scrollTo({
+      left: Math.max(0, left),
       behavior: reduce ? "auto" : "smooth",
     });
   }, [active, reduce]);
