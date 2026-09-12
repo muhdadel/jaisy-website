@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/app-image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLightbox } from "@/hooks/use-lightbox";
 import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";

@@ -7,7 +7,7 @@ import {
   useReducedMotion,
   useSpring,
 } from "framer-motion";
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/app-image";
 import { useEffect, useMemo, useState } from "react";
 import {
   ProjectLightbox,

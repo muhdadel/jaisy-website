@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/app-image";
 import { useSiteReady } from "@/components/layout/site-ready-provider";
 import { cn } from "@/lib/utils/cn";
 import { EASE_BRAND } from "@/lib/utils/motion";

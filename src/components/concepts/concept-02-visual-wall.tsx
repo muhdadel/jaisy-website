@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/app-image";
 import { useMemo, useState } from "react";
 import {
   ProjectLightbox,

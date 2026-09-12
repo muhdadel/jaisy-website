@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/app-image";
 import Link from "next/link";
 import { cn } from "@/lib/utils/cn";
 

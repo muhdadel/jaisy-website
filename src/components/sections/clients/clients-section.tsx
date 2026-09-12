@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { Section, SectionHeading } from "@/components/ui/section";
 import type { Client, SectionIntro } from "@/lib/content/types";
+import { withBasePath } from "@/lib/utils/base-path";
 import { cn } from "@/lib/utils/cn";
 
 function ClientChip({ name, logoUrl }: { name: string; logoUrl: string }) {
@@ -16,7 +17,7 @@ function ClientChip({ name, logoUrl }: { name: string; logoUrl: string }) {
         {/* Artwork is already brand-pink on transparent, so no CSS filtering is needed. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={logoUrl}
+          src={withBasePath(logoUrl)}
           alt={name}
           loading="lazy"
           decoding="async"

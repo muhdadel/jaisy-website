@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/app-image";
 import { useEffect, useRef } from "react";
 import { ArtworkTile } from "@/components/ui/artwork-tile";
 import { CornerBrackets } from "@/components/ui/corner-brackets";

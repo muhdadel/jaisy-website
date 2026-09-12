@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/app-image";
 import { type CSSProperties, type ReactNode, useMemo } from "react";
 import {
   ProjectLightbox,
