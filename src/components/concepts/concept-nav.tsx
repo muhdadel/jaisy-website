@@ -11,6 +11,8 @@ const CONCEPTS = [
   { href: "/concept-3", number: "03", label: "Explore By" },
   { href: "/concept-4", number: "04", label: "Project Archive" },
   { href: "/concept-5", number: "05", label: "Capability Map" },
+  { href: "/concept-5b", number: "05b", label: "Map · Reel" },
+  { href: "/concept-5c", number: "05c", label: "Map · Atlas" },
   { href: "/concept-6", number: "06", label: "Original" },
 ];
 
