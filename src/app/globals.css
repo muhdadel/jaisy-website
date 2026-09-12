@@ -1,0 +1,284 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Jaisy design tokens
+ * Brand palette is taken from the logo (CONTENT.md §B.1) and is used
+ * as ACCENT ONLY — near-black stays the dominant surface everywhere.
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Surfaces */
+  --color-ink-950: #0a0a0c;
+  --color-ink-900: #0e0e11;
+  --color-ink-850: #121214;
+  --color-ink-800: #17171b;
+  --color-ink-700: #1f1f25;
+  --color-ink-600: #2a2a32;
+
+  /* Brand accents */
+  --color-brand-blue: #1ab3ff;
+  --color-brand-pink: #fe2f94;
+  --color-brand-yellow: #ffdd07;
+
+  /* Text */
+  --color-fg: #f5f5f7;
+  --color-fg-muted: #b8b8c0;
+  --color-fg-subtle: #9a9aa5;
+
+  /* Typography */
+  --font-display: var(--font-display), "Space Grotesk", "Archivo Black",
+    ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body), "Open Sauce One", ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", sans-serif;
+
+  /* Radii */
+  --radius-card: 1.25rem;
+
+  /* Motion */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Keyframes */
+  --animate-marquee: marquee var(--marquee-duration, 45s) linear infinite;
+  --animate-marquee-reverse: marquee-reverse var(--marquee-duration, 45s) linear
+    infinite;
+  --animate-drift-slow: drift 22s ease-in-out infinite;
+  --animate-drift-slower: drift 34s ease-in-out infinite reverse;
+  --animate-spin-slow: spin 8s linear infinite;
+  --animate-sheen: sheen 2.4s ease-in-out infinite;
+  --animate-dot-jump: dot-jump 1.34s infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, -8%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-7%, 5%, 0) scale(0.94);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/*
+ * Preloader — the dot of the "j" springs out of its slot with a proper
+ * squash-and-stretch. Written in plain CSS (not JS) so it is already running
+ * on the very first painted frame, before React hydrates.
+ */
+@keyframes dot-jump {
+  0% {
+    transform: translateY(0) scale(1.38, 0.6);
+    animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+  }
+  26% {
+    transform: translateY(-330%) scale(0.9, 1.12);
+    animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+  }
+  54% {
+    transform: translateY(0) scale(0.9, 1.12);
+    animation-timing-function: linear;
+  }
+  61% {
+    transform: translateY(0) scale(1.46, 0.58);
+    animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+  }
+  72% {
+    transform: translateY(-95%) scale(0.96, 1.06);
+    animation-timing-function: cubic-bezier(0.42, 0, 1, 1);
+  }
+  81% {
+    transform: translateY(0) scale(1.05, 0.94);
+    animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+  }
+  90%,
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  * {
+    border-color: color-mix(in oklab, var(--color-ink-600) 60%, transparent);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* offset for the fixed navbar when jumping to anchors */
+    scroll-padding-top: 5.5rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-fg-muted);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-fg);
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-brand-pink);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Custom scrollbar (desktop only, purely decorative) */
+  @media (pointer: fine) {
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-ink-950);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(
+        180deg,
+        var(--color-brand-pink),
+        #3d0b23
+      );
+      border-radius: 999px;
+      border: 3px solid var(--color-ink-950);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Reusable brand utilities
+ * ------------------------------------------------------------------ */
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 82rem;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility text-gradient-brand {
+  color: var(--color-brand-pink);
+}
+
+/**
+ * Bright fill — solid brand pink. Always pair with `text-ink-950`.
+ * Used for active pills, chips, stat tiles and progress bars.
+ */
+@utility bg-gradient-brand {
+  background-image: none;
+  background-color: var(--color-brand-pink);
+}
+
+@utility surface-card {
+  background-color: color-mix(in oklab, var(--color-ink-850) 92%, transparent);
+  border: 1px solid color-mix(in oklab, #ffffff 8%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+@utility grid-texture {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, #ffffff 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, #ffffff 4%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+@utility noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-fg-subtle);
+}
