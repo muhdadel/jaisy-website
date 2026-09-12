@@ -5,6 +5,7 @@ import { ProjectLightbox } from "@/components/concepts/project-lightbox";
 import { AppImage as Image } from "@/components/ui/app-image";
 import { useLightbox } from "@/hooks/use-lightbox";
 import type { ConceptPageData } from "@/lib/concepts/load";
+import type { ServiceSlug } from "@/lib/content/types";
 import { accentClasses } from "@/lib/utils/accents";
 import { cn } from "@/lib/utils/cn";
 
@@ -54,7 +55,9 @@ function Concept05MobileReel({
   fillParent?: boolean;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [viewSlug, setViewSlug] = useState(data.services[0]?.slug ?? "");
+  const [viewSlug, setViewSlug] = useState<ServiceSlug>(
+    data.services[0].slug,
+  );
   const scrollerRef = useRef<HTMLDivElement>(null);
   const slideRefs = useRef<Array<HTMLElement | null>>([]);
   const pendingOpen = useRef<number | null>(null);
@@ -108,7 +111,7 @@ function Concept05MobileReel({
     scroller.scrollTo({ top: slide.offsetTop, behavior: "smooth" });
   };
 
-  const openProject = (slug: string, index: number) => {
+  const openProject = (slug: ServiceSlug, index: number) => {
     if (slug === viewSlug) {
       lightbox.open(index);
       return;
