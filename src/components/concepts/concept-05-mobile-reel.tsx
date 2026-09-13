@@ -47,7 +47,7 @@ export function Concept05MobileReelPage({ data }: { data: ConceptPageData }) {
   );
 }
 
-function Concept05MobileReel({
+export function Concept05MobileReel({
   data,
   fillParent = false,
 }: {
@@ -125,7 +125,7 @@ function Concept05MobileReel({
       aria-labelledby="concept-5b-heading"
       className={cn(
         "relative flex flex-col bg-ink-950",
-        fillParent ? "h-full" : "h-[calc(100svh-9.75rem)]",
+        fillParent ? "h-full" : "h-[calc(100svh-5rem)]",
       )}
     >
       <h2 id="concept-5b-heading" className="sr-only">

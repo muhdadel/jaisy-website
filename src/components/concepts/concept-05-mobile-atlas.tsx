@@ -51,7 +51,7 @@ export function Concept05MobileAtlasPage({ data }: { data: ConceptPageData }) {
   );
 }
 
-function Concept05MobileAtlas({
+export function Concept05MobileAtlas({
   data,
   fillParent = false,
 }: {
@@ -74,7 +74,7 @@ function Concept05MobileAtlas({
       aria-labelledby="concept-5c-heading"
       className={cn(
         "relative flex flex-col bg-ink-950",
-        fillParent ? "h-full" : "h-[calc(100svh-9.75rem)]",
+        fillParent ? "h-full" : "h-[calc(100svh-5rem)]",
       )}
     >
       <div className="flex items-center justify-between gap-3 px-5 py-3">

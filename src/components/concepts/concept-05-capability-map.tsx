@@ -4,6 +4,8 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AppImage as Image } from "@/components/ui/app-image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Concept05MobileAtlas } from "@/components/concepts/concept-05-mobile-atlas";
+import { Concept05MobileReel } from "@/components/concepts/concept-05-mobile-reel";
 import {
   ProjectLightbox,
   useProjectViewer,
@@ -48,12 +50,15 @@ export function Concept05CapabilityMap({
   headingAs: Heading = "h1",
   headingId = "concept-5-heading",
   sectionId,
+  mobileVariant = "stage",
 }: {
   data: ConceptPageData;
   headingAs?: "h1" | "h2";
   headingId?: string;
   /** Homepage section id (`work`). Legacy #services / #industries still resolve. */
   sectionId?: string;
+  /** Live and Concept 05 use the cinematic stage. 5b/5c swap the mobile only. */
+  mobileVariant?: "stage" | "reel" | "atlas";
 }) {
   const reduce = useReducedMotion();
   const [active, setActive] = useState<ServiceSlug>(data.services[0].slug);
@@ -74,7 +79,10 @@ export function Concept05CapabilityMap({
     <section
       id={sectionId}
       aria-labelledby={headingId}
-      className="relative scroll-mt-24 overflow-x-clip py-16 sm:py-20 lg:py-24"
+      className={cn(
+        "relative scroll-mt-24 overflow-x-clip",
+        mobileVariant === "stage" ? "py-16 sm:py-20 lg:py-24" : "py-0 lg:py-24",
+      )}
     >
       {sectionId === "work" && (
         <>
@@ -297,12 +305,22 @@ export function Concept05CapabilityMap({
           </div>
         </div>
 
-        <MobileCapabilityMap
-          data={data}
-          active={active}
-          onSelect={setActive}
-          onOpenProject={open}
-        />
+        {mobileVariant === "stage" ? (
+          <MobileCapabilityMap
+            data={data}
+            active={active}
+            onSelect={setActive}
+            onOpenProject={open}
+          />
+        ) : (
+          <div className="-mx-5 lg:hidden sm:-mx-8">
+            {mobileVariant === "reel" ? (
+              <Concept05MobileReel data={data} />
+            ) : (
+              <Concept05MobileAtlas data={data} />
+            )}
+          </div>
+        )}
       </div>
 
       <ProjectLightbox {...viewerProps} />

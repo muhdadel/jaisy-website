@@ -6,13 +6,21 @@ import type { ConceptPageData } from "@/lib/concepts/load";
  * heading level. The section itself is `#work` so the nav and hero CTA
  * land on the map; `#services` and `#industries` stay as aliases.
  */
-export function CapabilityMapSection({ data }: { data: ConceptPageData }) {
+export function CapabilityMapSection({
+  data,
+  mobileVariant = "stage",
+}: {
+  data: ConceptPageData;
+  /** Live homepage stays on `stage`. Preview routes may pass `reel` or `atlas`. */
+  mobileVariant?: "stage" | "reel" | "atlas";
+}) {
   return (
     <Concept05CapabilityMap
       data={data}
       headingAs="h2"
       headingId="work-heading"
       sectionId="work"
+      mobileVariant={mobileVariant}
     />
   );
 }
