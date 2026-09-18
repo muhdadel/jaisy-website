@@ -5,10 +5,11 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Logo } from "@/components/layout/logo";
 import { ButtonLink } from "@/components/ui/button";
+import { PlatformIcon } from "@/components/ui/platform-icon";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
 import { useScrolled } from "@/hooks/use-scrolled";
-import type { NavItem } from "@/lib/content/types";
+import type { NavItem, PlatformKey, PlatformLink } from "@/lib/content/types";
 import { cn } from "@/lib/utils/cn";
 import { EASE_BRAND } from "@/lib/utils/motion";
 
@@ -16,12 +17,33 @@ interface NavbarProps {
   items: NavItem[];
   ctaLabel: string;
   ctaHref?: string;
+  platformLinks?: PlatformLink[];
 }
 
-export function Navbar({ items, ctaLabel, ctaHref = "#contact" }: NavbarProps) {
+const NAV_SOCIALS: PlatformKey[] = [
+  "instagram",
+  "facebook",
+  "tiktok",
+  "whatsapp",
+];
+
+function socialsForNav(links: PlatformLink[]) {
+  return NAV_SOCIALS.flatMap((platform) => {
+    const link = links.find((item) => item.platform === platform);
+    return link ? [link] : [];
+  });
+}
+
+export function Navbar({
+  items,
+  ctaLabel,
+  ctaHref = "#contact",
+  platformLinks = [],
+}: NavbarProps) {
   const reduce = useReducedMotion();
   const scrolled = useScrolled(48);
   const [menuOpen, setMenuOpen] = useState(false);
+  const socials = socialsForNav(platformLinks);
 
   const sectionIds = useMemo(() => items.map((item) => item.sectionId), [items]);
   const active = useActiveSection(sectionIds);
@@ -94,6 +116,27 @@ export function Navbar({ items, ctaLabel, ctaHref = "#contact" }: NavbarProps) {
           </ul>
 
           <div className="flex items-center gap-2">
+            {socials.length > 0 && (
+              <ul className="flex items-center gap-1" aria-label="Social">
+                {socials.map((link) => (
+                  <li key={link.id}>
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Jaisy on ${link.label}`}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-fg-subtle transition-colors duration-300 hover:border-brand-pink/50 hover:text-fg"
+                    >
+                      <PlatformIcon
+                        platform={link.platform}
+                        className="h-4 w-4"
+                      />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+
             <ButtonLink
               href={ctaHref}
               size="sm"
@@ -196,6 +239,30 @@ export function Navbar({ items, ctaLabel, ctaHref = "#contact" }: NavbarProps) {
                   <ArrowUpRight className="h-4 w-4" aria-hidden />
                 </ButtonLink>
               </div>
+
+              {socials.length > 0 && (
+                <ul
+                  className="mt-8 flex items-center gap-2"
+                  aria-label="Social"
+                >
+                  {socials.map((link) => (
+                    <li key={link.id}>
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Jaisy on ${link.label}`}
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-fg-subtle"
+                      >
+                        <PlatformIcon
+                          platform={link.platform}
+                          className="h-4 w-4"
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </nav>
           </motion.div>
         )}

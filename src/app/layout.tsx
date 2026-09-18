@@ -102,7 +102,11 @@ export default async function RootLayout({
 
         <SiteReadyProvider>
           <Preloader />
-          <Navbar items={navItems} ctaLabel={PRIMARY_CTA_LABEL} />
+          <Navbar
+            items={navItems}
+            ctaLabel={PRIMARY_CTA_LABEL}
+            platformLinks={platformLinks}
+          />
           <main id="main">{children}</main>
           <Footer
             settings={settings}

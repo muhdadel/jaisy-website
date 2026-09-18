@@ -6,8 +6,10 @@ import { CtaSection } from "@/components/sections/cta/cta-section";
 import { HeroSection } from "@/components/sections/hero/hero-section";
 import { VisionMissionSection } from "@/components/sections/vision/vision-mission-section";
 import { WhySection } from "@/components/sections/why/why-section";
+import { LatestWorkOrb } from "@/components/latest-work/latest-work-orb";
 import { conceptPageDataFrom } from "@/lib/concepts/load";
 import { PRIMARY_CTA_LABEL } from "@/lib/content/site";
+import { loadLatestWork } from "@/lib/latest-work";
 import {
   getAboutContent,
   getClients,
@@ -40,6 +42,7 @@ export default async function HomePage() {
     clients,
     platformLinks,
     copy,
+    latestWork,
   ] = await Promise.all([
     getSiteSettings(),
     getHeroContent(),
@@ -52,6 +55,7 @@ export default async function HomePage() {
     getClients(),
     getPlatformLinks(),
     getSectionCopy(),
+    loadLatestWork(),
   ]);
 
   const stats = [
@@ -82,6 +86,7 @@ export default async function HomePage() {
         platformLinks={platformLinks}
         submitLabel={PRIMARY_CTA_LABEL}
       />
+      <LatestWorkOrb projects={latestWork} />
     </>
   );
 }
