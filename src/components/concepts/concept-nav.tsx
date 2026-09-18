@@ -13,6 +13,9 @@ const CONCEPTS = [
   { href: "/concept-5", number: "05", label: "Capability Map" },
   { href: "/concept-5b", number: "05b", label: "Map · Reel" },
   { href: "/concept-5c", number: "05c", label: "Map · Atlas" },
+  { href: "/concept-5d", number: "05d", label: "Map · Cards" },
+  { href: "/concept-5e", number: "05e", label: "Map · List" },
+  { href: "/concept-5f", number: "05f", label: "Map · Dock" },
   { href: "/concept-6", number: "06", label: "Original" },
 ];
 

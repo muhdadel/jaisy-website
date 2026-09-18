@@ -11,8 +11,8 @@ export function CapabilityMapSection({
   mobileVariant = "stage",
 }: {
   data: ConceptPageData;
-  /** Live homepage stays on `stage`. Preview routes may pass `reel` or `atlas`. */
-  mobileVariant?: "stage" | "reel" | "atlas";
+  /** Live homepage stays on `stage`. Preview routes may pass another mobile idea. */
+  mobileVariant?: "stage" | "reel" | "atlas" | "cards" | "list" | "dock";
 }) {
   return (
     <Concept05CapabilityMap

@@ -29,7 +29,7 @@ import {
 export async function ConceptFullHome({
   mobileVariant,
 }: {
-  mobileVariant: "reel" | "atlas";
+  mobileVariant: "reel" | "atlas" | "cards" | "list" | "dock";
 }) {
   const [
     settings,

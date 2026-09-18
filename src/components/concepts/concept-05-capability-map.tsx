@@ -5,6 +5,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { AppImage as Image } from "@/components/ui/app-image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Concept05MobileAtlas } from "@/components/concepts/concept-05-mobile-atlas";
+import {
+  Concept05MobileCards,
+  Concept05MobileDock,
+  Concept05MobileList,
+} from "@/components/concepts/concept-05-mobile-compact";
 import { Concept05MobileReel } from "@/components/concepts/concept-05-mobile-reel";
 import {
   ProjectLightbox,
@@ -57,8 +62,8 @@ export function Concept05CapabilityMap({
   headingId?: string;
   /** Homepage section id (`work`). Legacy #services / #industries still resolve. */
   sectionId?: string;
-  /** Live and Concept 05 use the cinematic stage. 5b/5c swap the mobile only. */
-  mobileVariant?: "stage" | "reel" | "atlas";
+  /** Live and Concept 05 use the cinematic stage. Preview routes swap mobile only. */
+  mobileVariant?: "stage" | "reel" | "atlas" | "cards" | "list" | "dock";
 }) {
   const reduce = useReducedMotion();
   const [active, setActive] = useState<ServiceSlug>(data.services[0].slug);
@@ -314,11 +319,11 @@ export function Concept05CapabilityMap({
           />
         ) : (
           <div className="-mx-5 lg:hidden sm:-mx-8">
-            {mobileVariant === "reel" ? (
-              <Concept05MobileReel data={data} />
-            ) : (
-              <Concept05MobileAtlas data={data} />
-            )}
+            {mobileVariant === "reel" && <Concept05MobileReel data={data} />}
+            {mobileVariant === "atlas" && <Concept05MobileAtlas data={data} />}
+            {mobileVariant === "cards" && <Concept05MobileCards data={data} />}
+            {mobileVariant === "list" && <Concept05MobileList data={data} />}
+            {mobileVariant === "dock" && <Concept05MobileDock data={data} />}
           </div>
         )}
       </div>
