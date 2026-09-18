@@ -13,7 +13,7 @@ import { EASE_BRAND } from "@/lib/utils/motion";
 
 /**
  * CONCEPT 02 — a capability-map orb that opens a circular / swipeable
- * three-project composition. Left-docked so it never fights the CTA.
+ * three-project composition. Right-docked above the tagline bar.
  */
 export function LatestWorkOrb({
   projects,
@@ -62,7 +62,7 @@ export function LatestWorkOrb({
             type="button"
             aria-label="Show latest work"
             onClick={() => setHidden(false)}
-            className="fixed bottom-14 left-4 z-[70] rounded-full border border-white/15 bg-ink-950/90 px-3 py-2 text-[0.58rem] font-bold uppercase tracking-[0.18em] text-fg-subtle backdrop-blur-xl sm:left-6"
+            className="fixed bottom-14 right-4 z-[70] rounded-full border border-white/15 bg-ink-950/90 px-3 py-2 text-[0.58rem] font-bold uppercase tracking-[0.18em] text-fg-subtle backdrop-blur-xl sm:right-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -75,7 +75,7 @@ export function LatestWorkOrb({
       <AnimatePresence>
         {!hidden && !open && (
           <motion.div
-            className="fixed bottom-14 left-4 z-[70] sm:left-6"
+            className="fixed bottom-14 right-4 z-[70] sm:right-6"
             initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.94 }}
