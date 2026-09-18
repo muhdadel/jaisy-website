@@ -46,10 +46,10 @@ export function VisionMissionSection({
 
         <Reveal delay={0.1}>
           <div className="mt-16 max-w-3xl">
-            <h3 className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-fg-subtle">
+            <h3 className="text-[clamp(1.7rem,3.4vw,2.5rem)] font-bold leading-[1.05] tracking-tight">
               {content.whatWeDo.title}
             </h3>
-            <p className="mt-4 text-base leading-relaxed text-fg-muted">
+            <p className="mt-6 text-base leading-relaxed text-fg-muted sm:text-lg">
               {content.whatWeDo.body}
             </p>
           </div>
