@@ -5,12 +5,6 @@ import type {
   SectionIntro,
   Service,
 } from "@/lib/content/types";
-import {
-  getIndustries,
-  getPortfolioItems,
-  getSectionCopy,
-  getServices,
-} from "@/lib/data";
 
 export interface ConceptPageData extends ConceptPayload {
   copy: {
@@ -39,16 +33,4 @@ export function conceptPageDataFrom(
       industries: copy.industries,
     },
   };
-}
-
-/** Single entry point every concept route uses, so all five share one dataset. */
-export async function loadConceptPageData(): Promise<ConceptPageData> {
-  const [services, industries, items, copy] = await Promise.all([
-    getServices(),
-    getIndustries(),
-    getPortfolioItems(),
-    getSectionCopy(),
-  ]);
-
-  return conceptPageDataFrom(services, industries, items, copy);
 }

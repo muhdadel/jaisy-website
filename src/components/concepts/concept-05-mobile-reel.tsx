@@ -10,50 +10,10 @@ import { accentClasses } from "@/lib/utils/accents";
 import { cn } from "@/lib/utils/cn";
 
 /**
- * CONCEPT 05 — mobile idea B: the Capability Reel.
- * Each capability is a full-screen chapter. You flip vertically, like a
- * physical reel — not a shrunk orbit, and not the swipe-to-rotate stage.
+ * Production mobile Capability Map: each capability is a full-screen
+ * chapter. Swipe up for the next — not a shrunk desktop orbit.
  */
-export function Concept05MobileReelPage({ data }: { data: ConceptPageData }) {
-  return (
-    <div className="bg-ink-950">
-      <div className="hidden border-b border-white/[0.07] px-8 py-6 lg:block">
-        <p className="text-[0.62rem] font-bold uppercase tracking-[0.22em] text-fg-subtle">
-          Concept 05 · mobile idea B
-        </p>
-        <h1 className="mt-2 font-[family-name:var(--font-display)] text-2xl font-bold uppercase tracking-tight">
-          Capability Reel
-        </h1>
-        <p className="mt-3 max-w-xl text-sm leading-relaxed text-fg-muted">
-          A new mobile reading of the map: one capability per screen, swipe up
-          for the next. The live site and Concept 05 still use the cinematic
-          stage. This page is only a test.
-        </p>
-      </div>
-
-      <div className="lg:hidden">
-        <Concept05MobileReel data={data} />
-      </div>
-
-      <div className="hidden flex-col items-center gap-6 px-8 py-12 lg:flex">
-        <p className="text-sm text-fg-muted">
-          Preview at phone width — or open this URL on your phone.
-        </p>
-        <div className="relative h-[min(52rem,calc(100dvh-18rem))] w-[24.375rem] overflow-hidden rounded-[2rem] border border-white/15 bg-ink-950 shadow-[0_0_80px_-24px_rgba(26,179,255,0.28)]">
-          <Concept05MobileReel data={data} fillParent />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function Concept05MobileReel({
-  data,
-  fillParent = false,
-}: {
-  data: ConceptPageData;
-  fillParent?: boolean;
-}) {
+export function Concept05MobileReel({ data }: { data: ConceptPageData }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [viewSlug, setViewSlug] = useState<ServiceSlug>(
     data.services[0].slug,
@@ -121,17 +81,7 @@ export function Concept05MobileReel({
   };
 
   return (
-    <section
-      aria-labelledby="concept-5b-heading"
-      className={cn(
-        "relative flex flex-col bg-ink-950",
-        fillParent ? "h-full" : "h-[calc(100svh-5rem)]",
-      )}
-    >
-      <h2 id="concept-5b-heading" className="sr-only">
-        Capability Map — mobile reel
-      </h2>
-
+    <div className="relative flex h-[calc(100svh-5rem)] flex-col bg-ink-950">
       <div className="flex items-center justify-between gap-3 px-5 py-3">
         <p className="font-[family-name:var(--font-display)] text-[0.68rem] font-bold uppercase tracking-[0.2em] text-fg-subtle">
           360° Brand Execution
@@ -307,6 +257,6 @@ export function Concept05MobileReel({
         onPrevious={lightbox.previous}
         onNext={lightbox.next}
       />
-    </section>
+    </div>
   );
 }

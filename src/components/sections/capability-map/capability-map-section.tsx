@@ -2,25 +2,16 @@ import { Concept05CapabilityMap } from "@/components/concepts/concept-05-capabil
 import type { ConceptPageData } from "@/lib/concepts/load";
 
 /**
- * Production Capability Map — Concept 05 desktop orbit, Concept 5b reel on
- * mobile. The section itself is `#work` so the nav and hero CTA land on the
- * map; `#services` and `#industries` stay as aliases.
+ * Production Capability Map. `#work` is the section; `#services` and
+ * `#industries` stay as aliases for older links.
  */
-export function CapabilityMapSection({
-  data,
-  mobileVariant = "stage",
-}: {
-  data: ConceptPageData;
-  /** Live homepage uses `reel` (Concept 5b). Preview routes may pass another idea. */
-  mobileVariant?: "stage" | "reel" | "atlas" | "cards" | "list" | "dock";
-}) {
+export function CapabilityMapSection({ data }: { data: ConceptPageData }) {
   return (
     <Concept05CapabilityMap
       data={data}
       headingAs="h2"
       headingId="work-heading"
       sectionId="work"
-      mobileVariant={mobileVariant}
     />
   );
 }

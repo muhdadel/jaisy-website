@@ -12,9 +12,9 @@ import { cn } from "@/lib/utils/cn";
 import { EASE_BRAND } from "@/lib/utils/motion";
 
 /**
- * Viewer state shared by all five concepts. `resetKey` should change whenever
- * the visible collection changes (a new filter, a new service) so an open
- * viewer never points at a stale index.
+ * Viewer state for the Capability Map lightbox. `resetKey` should change
+ * whenever the visible collection changes so an open viewer never points
+ * at a stale index.
  */
 export function useProjectViewer(projects: ConceptProject[], resetKey = "") {
   const lightbox = useLightbox(projects.length);

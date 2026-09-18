@@ -1,8 +1,8 @@
 /**
- * Joins services, work and industries for the Capability Map (and the
- * remaining concept-review routes). Existing `portfolioItems` are not
- * mutated — the only additive information is the project → industry
- * association below, which `PortfolioItem` does not carry yet.
+ * Joins services, work and industries for the Capability Map.
+ * Existing `portfolioItems` are not mutated — the only additive
+ * information is the project → industry association below, which
+ * `PortfolioItem` does not carry yet.
  */
 import type {
   Industry,
