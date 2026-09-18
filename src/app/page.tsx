@@ -72,7 +72,7 @@ export default async function HomePage() {
       <HeroSection content={hero} services={services} />
       <AboutSection content={about} />
       <VisionMissionSection content={visionMission} />
-      <CapabilityMapSection data={capabilityMap} />
+      <CapabilityMapSection data={capabilityMap} mobileVariant="reel" />
       <WhySection copy={copy.why} points={whyPoints} stats={stats} />
       <ClientsSection copy={copy.clients} clients={clients} />
       <CtaSection content={copy.ctaBand} />
