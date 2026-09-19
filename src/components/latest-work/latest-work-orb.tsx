@@ -85,15 +85,15 @@ export function LatestWorkOrb({
               type="button"
               aria-label={`Open latest work: ${lead.title}`}
               onClick={() => setOpen(true)}
-              className="relative block h-[5.75rem] w-[5.75rem]"
+              className="relative block h-[4.6rem] w-[4.6rem] lg:h-[5.75rem] lg:w-[5.75rem]"
             >
               <span
                 aria-hidden
-                className="absolute -inset-2 rounded-full border border-brand-blue/40"
+                className="absolute -inset-1.5 rounded-full border border-brand-blue/40 lg:-inset-2"
               />
               <span
                 aria-hidden
-                className="absolute -inset-4 rounded-full border border-dashed border-brand-pink/30"
+                className="absolute -inset-3 rounded-full border border-dashed border-brand-pink/30 lg:-inset-4"
               />
               <span className="relative block h-full w-full overflow-hidden rounded-full border border-white/20">
                 <Image
@@ -104,8 +104,8 @@ export function LatestWorkOrb({
                   className="object-cover"
                 />
               </span>
-              <span className="absolute -right-1 -top-1 flex h-7 w-7 items-center justify-center rounded-full bg-brand-pink text-ink-950">
-                <ArrowUpRight className="h-3.5 w-3.5" />
+              <span className="absolute -right-1 -top-1 flex h-[1.4rem] w-[1.4rem] items-center justify-center rounded-full bg-brand-pink text-ink-950 lg:h-7 lg:w-7">
+                <ArrowUpRight className="h-[0.7rem] w-[0.7rem] lg:h-3.5 lg:w-3.5" />
               </span>
             </button>
             <p className="mt-2 text-center text-[0.58rem] font-bold uppercase tracking-[0.18em] text-fg-subtle">
